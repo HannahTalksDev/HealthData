@@ -59,7 +59,7 @@
   background: #4f46e5;
 }
 
-.button-disabled {
+.buttonDisabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -93,31 +93,31 @@
   margin-bottom: 30px;
 }
 
-.drug-title {
+.drugTitle {
   font-size: 28px;
   color: #2d3748;
   margin-bottom: 10px;
   text-transform: capitalize;
 }
 
-.total-reports {
+.totalReports {
   font-size: 16px;
   color: #718096;
 }
 
-.section-title {
+.sectionTitle {
   font-size: 20px;
   color: #2d3748;
   margin-bottom: 20px;
 }
 
-.symptoms-list {
+.symptomsList {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.symptom-item {
+.symptomItem {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -127,11 +127,11 @@
   transition: transform 0.2s;
 }
 
-.symptom-item:hover {
+.symptomItem:hover {
   transform: translateX(4px);
 }
 
-.symptom-rank {
+.symptomRank {
   width: 32px;
   height: 32px;
   background: #6366f1;
@@ -145,23 +145,23 @@
   flex-shrink: 0;
 }
 
-.symptom-details {
+.symptomDetails {
   flex: 1;
 }
 
-.symptom-name {
+.symptomName {
   font-size: 16px;
   font-weight: 600;
   color: #2d3748;
   margin-bottom: 4px;
 }
 
-.symptom-count {
+.symptomCount {
   font-size: 14px;
   color: #718096;
 }
 
-.symptom-bar {
+.symptomBar {
   width: 150px;
   height: 8px;
   background: #e2e8f0;
@@ -169,7 +169,7 @@
   overflow: hidden;
 }
 
-.symptom-bar-fill {
+.symptomBarFill {
   height: 100%;
   background: #6366f1;
   transition: width 0.3s ease;
