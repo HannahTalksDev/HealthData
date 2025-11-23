@@ -11,8 +11,12 @@ interface DrugData {
   symptoms: Symptom[];
 }
 
+interface FdaEventResponse {
+  results?: Symptom[];
+}
+
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
+  const { searchParams } = request.nextUrl;
   const drugName = searchParams.get("drugName");
 
   if (!drugName) {
@@ -20,21 +24,23 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const response = await fetch(
-      `https://api.fda.gov/drug/event.json?search=patient.drug.medicinalproduct:"${encodeURIComponent(
-        drugName,
-      )}"&count=patient.reaction.reactionmeddrapt.exact&limit=20`,
-    );
+    const query = new URLSearchParams({
+      search: `patient.drug.medicinalproduct:"${drugName}"`,
+      count: "patient.reaction.reactionmeddrapt.exact",
+      limit: "20",
+    });
+
+    const response = await fetch(`https://api.fda.gov/drug/event.json?${query.toString()}`);
 
     if (!response.ok) {
-      throw new Error(`FDA API returned ${response.status}`);
+      throw new Error(`API returned ${response.status}`);
     }
 
-    const data = (await response.json()) as { results?: Symptom[] };
+    const fdaData: FdaEventResponse = await response.json();
 
-    const symptoms: Symptom[] = Array.isArray(data.results) ? data.results : [];
+    const symptoms: Symptom[] = Array.isArray(fdaData.results) ? fdaData.results : [];
 
-    const totalReports = symptoms.reduce((sum, s) => sum + (s.count ?? 0), 0);
+    const totalReports = symptoms.reduce((sum, symptom) => sum + symptom.count, 0);
 
     const result: DrugData = {
       drugName,
