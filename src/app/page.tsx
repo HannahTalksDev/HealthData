@@ -8,7 +8,7 @@ interface Symptom {
   count: number;
 }
 
-interface DrugData {
+interface Data {
   drugName: string;
   totalReports: number;
   symptoms: Symptom[];
@@ -17,7 +17,7 @@ interface DrugData {
 export default function Home() {
   const [drugName, setDrugName] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [data, setData] = useState<DrugData | null>(null);
+  const [data, setData] = useState<Data | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const searchDrug = async (e: FormEvent<HTMLFormElement>) => {
