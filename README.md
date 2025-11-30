@@ -47,7 +47,7 @@ This project uses:
 - **Husky** for Git hooks
 - **lint-staged** for pre-commit checks
 
-Code is automatically linted and formatted before each commit.
+Code is automatically linted and formatted before each commit using commit hooks.
 
 ## Tech Stack
 
