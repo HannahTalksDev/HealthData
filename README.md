@@ -1,6 +1,7 @@
-# Health Data
+# Medicine Symptom Lookup
+A platform that pulls data from the FDA API and summarises how many symptoms have been reported for a specific medicine.
 
-A Next.js application that is with React 19 and TypeScript.
+This is a Next.js application that uses React 19 and TypeScript.
 
 ## Prerequisites
 
