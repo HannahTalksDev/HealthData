@@ -2,6 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import styles from "./page.module.css";
+import { SymptomThresholdPercent } from "./components/SymptomCasesAboveThreshold";
 
 interface Symptom {
   term: string;
@@ -84,36 +85,39 @@ export default function Home() {
         )}
 
         {data && (
-          <div className={styles.results}>
-            <div className={styles.header}>
-              <h2 className={styles.drugTitle}>{data.drugName}</h2>
-              <p className={styles.totalReports}>
-                Total Adverse Event Reports: <strong>{data.totalReports.toLocaleString()}</strong>
-              </p>
-            </div>
+          <>
+            <div className={styles.results}>
+              <div className={styles.header}>
+                <h2 className={styles.drugTitle}>{data.drugName}</h2>
+                <p className={styles.totalReports}>
+                  Total Adverse Event Reports: <strong>{data.totalReports.toLocaleString()}</strong>
+                </p>
+              </div>
 
-            <h2 className={styles.sectionTitle}>Top 20 Reported Symptoms:</h2>
+              <h2 className={styles.sectionTitle}>Top 20 Reported Symptoms:</h2>
 
-            <div className={styles.symptomsList}>
-              {data.symptoms.map((symptom, index) => (
-                <div key={index} className={styles.symptomItem}>
-                  <div className={styles.symptomRank}>{index + 1}</div>
-                  <div className={styles.symptomDetails}>
-                    <div className={styles.symptomName}>{symptom.term}</div>
-                    <div className={styles.symptomCount}>
-                      {symptom.count.toLocaleString()} reports
+              <div className={styles.symptomsList}>
+                {data.symptoms.map((symptom, index) => (
+                  <div key={index} className={styles.symptomItem}>
+                    <div className={styles.symptomRank}>{index + 1}</div>
+                    <div className={styles.symptomDetails}>
+                      <div className={styles.symptomName}>{symptom.term}</div>
+                      <div className={styles.symptomCount}>
+                        {symptom.count.toLocaleString()} reports
+                      </div>
+                    </div>
+                    <div className={styles.symptomBar}>
+                      <div
+                        className={styles.symptomBarFill}
+                        style={{ width: `${(symptom.count / data.symptoms[0].count) * 100}%` }}
+                      />
                     </div>
                   </div>
-                  <div className={styles.symptomBar}>
-                    <div
-                      className={styles.symptomBarFill}
-                      style={{ width: `${(symptom.count / data.symptoms[0].count) * 100}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+            <SymptomThresholdPercent data={data} />
+          </>
         )}
 
         {!data && !error && !loading && (
