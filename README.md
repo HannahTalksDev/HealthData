@@ -1,6 +1,6 @@
 # Health Data
 
-A Next.js application built with React 19 and TypeScript.
+A Next.js application that is with React 19 and TypeScript.
 
 ## Prerequisites
 
