@@ -27,7 +27,7 @@ npm install
 ```
 
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running!
 
 ## Available Scripts
 
