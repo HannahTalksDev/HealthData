@@ -54,6 +54,7 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.card}>
         <h1 className={styles.title}>Drug Symptom Lookup</h1>
+        <p className={styles.subtitle}>Search for a medication to see reported adverse events</p>
 
         <form onSubmit={searchDrug} className={styles.form}>
           <input
